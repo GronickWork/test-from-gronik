@@ -1,0 +1,12 @@
+.container {
+  height: 89vh;
+  position: relative;
+  margin: auto;
+  background: #fff;
+  background-image: url('https://www.stockvault.net/data/2019/09/10/269422/preview16.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: auto;
+  border: 1px solid #000;
+  border-top: 1px solid #fff;
+}
