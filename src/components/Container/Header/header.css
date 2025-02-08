@@ -1,0 +1,7 @@
+.header {
+  width: 60vw;
+  margin: 1rem auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
