@@ -1,5 +1,8 @@
 .seminars {
-  width: 90%;
+  width: 99%;
   margin: 1rem auto;
   border: #2a6e7a solid 1px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

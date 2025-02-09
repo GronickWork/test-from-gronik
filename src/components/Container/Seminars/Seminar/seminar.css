@@ -1,0 +1,21 @@
+.seminar-card {
+  border: #000 solid 1px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.seminar-card img {width: 12.5rem;}
+.seminar-card-button {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 7rem;
+}
+  .seminar-card-content {
+    width: 28rem;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 0.2rem;
+  }

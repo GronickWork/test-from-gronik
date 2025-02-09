@@ -5,3 +5,10 @@
   justify-content: space-around;
   align-items: center;
 }
+  .form-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding: 1rem;
+  }
