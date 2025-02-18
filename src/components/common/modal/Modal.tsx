@@ -5,10 +5,11 @@ import close from "../../../../public/image/х.png";
 type TModal = {
   toggle: ()=> void,
   children?: React.ReactNode,
-  name: string
+  name: {title: string, id:string },
 }
 
 export default function Modal({toggle, children, name}: TModal) {
+  const {title, id } = name;
   function closeModal() {
     toggle();
   }
@@ -16,7 +17,7 @@ export default function Modal({toggle, children, name}: TModal) {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-content-head">
-          <h4>{name}</h4>
+          {id? <h4>{title} c id: {id}</h4>: <h4>{title}</h4>}
           <img src={close} alt="close" onClick={closeModal}/>
         </div>
         <div className="modal-content-body">

@@ -3,7 +3,7 @@ import './Button.css';
 type TButton = {
   name?: string,
   url?: string,
-  onClick?: ()=> void
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>)=> void
 }
 export default function Button({name, url, onClick}: TButton) {
   return (
