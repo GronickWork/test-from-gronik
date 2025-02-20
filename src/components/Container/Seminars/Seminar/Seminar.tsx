@@ -9,25 +9,26 @@ type Tprops = {
   date: string,
   time: string,
   photo: string,
-  giveName?: (arg: {name: string, id: string})=>void
+  giveData?: (arg: {name: string, id: string, title: string})=>void
 }
 
 export default function Seminar(props: Tprops) {
-  const {id, title, description, date, time, photo, giveName} = props;
+  const {id, title, description, date, time, photo, giveData} = props;
 
-  function deleteSeminar(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined) {
+    
+  function handlerClickButton(e: React.MouseEvent<HTMLButtonElement, MouseEvent> | undefined) {
     const target = e?.currentTarget;
+    const modalName = target?.dataset.type === 'dlt'? 'Удалить': 'Изменить';
     if(target) {
       const seminarCard = target.closest('.seminar-card');
+      const seminarTitle = seminarCard?.querySelector('.seminar-card-text h4')?.textContent;
       if(seminarCard) {
-        giveName?.({name: 'Удалить семинар', id: seminarCard.id});
+        giveData?.({name: modalName, id: seminarCard.id, title: seminarTitle!});
       }
     }
-    
+
   }
-  function fixSeminar() {
-    
-  }
+
   return (
     <div className='seminar-card' id={id.toString()}>
       <div className='seminar-card-content'>
@@ -39,8 +40,8 @@ export default function Seminar(props: Tprops) {
         </div>
       </div>  
       <div className='seminar-card-button'>
-        <Button url={basket} onClick={deleteSeminar}/>
-        <Button url={pencil} onClick={fixSeminar}/>
+        <Button url={basket} typeB='dlt' onClick={handlerClickButton}/>
+        <Button url={pencil} typeB='fix' onClick={handlerClickButton}/>
       </div>
     </div>
   )
