@@ -2,7 +2,7 @@ import "./header.css";
 import Button from "../../common/Button/Button";
 import { useState } from "react";
 import Modal from "../../common/modal/Modal";
-import GetFormModal from "../../common/formModal";
+import GetFormModal from "../../common/FormModal";
 
 export default function Header() {
   const [statusModal, setStatusModal] = useState(false);
@@ -10,8 +10,8 @@ export default function Header() {
   function sendData(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = document.forms.namedItem("formM") as HTMLFormElement;
-    //const form1 = new FormData(form);
-    console.log(form);
+    const form1 = new FormData(form);
+    console.log(form1);
     const title = (form.elements.namedItem("title") as HTMLInputElement).value;
     const description = form.description.value;
     const date = form.date.value;

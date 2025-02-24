@@ -3,7 +3,7 @@ import { seminars as list } from "../../../../seminars.json";
 import Seminar from "./Seminar/Seminar";
 import "./seminars.css";
 import Modal from "../../common/modal/Modal";
-import GetFormModal from "../../common/formModal";
+import GetFormModal from "../../common/FormModal";
 import Button from "../../common/Button/Button";
 
 export default function Seminars() {
@@ -37,9 +37,12 @@ export default function Seminars() {
     setModalActive(false);
   }
 
-  function seminarFix() {
+  function seminarFix(e: React.FormEvent<HTMLFormElement>) {
     const seminarId = headerModal.id;
+    const fixedForm = e.target as HTMLFormElement;
+    const sendForm = new FormData(fixedForm); 
     console.log(`изменение семинара с id: ${seminarId}`);
+    console.log(sendForm.get("description"));
     setModalActive(false);
   }
   return (
