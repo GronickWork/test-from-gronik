@@ -6,3 +6,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+  .seminars h3 {
+    color: blue;
+    margin: 0 auto;
+  }

@@ -3,6 +3,7 @@ import Button from "../../common/Button/Button";
 import { useState } from "react";
 import Modal from "../../common/modal/Modal";
 import GetFormModal from "../../common/FormModal";
+import fetchSeminars from "../../common/fetchData";
 
 export default function Header() {
   const [statusModal, setStatusModal] = useState(false);
@@ -10,14 +11,15 @@ export default function Header() {
   function sendData(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = document.forms.namedItem("formM") as HTMLFormElement;
-    const form1 = new FormData(form);
+    /*const form1 = new FormData(form);
     console.log(form1);
     const title = (form.elements.namedItem("title") as HTMLInputElement).value;
     const description = form.description.value;
     const date = form.date.value;
     const time = form.time.value;
     const photo = form.photo.value;
-    console.log(title, description, date, time, photo);
+    console.log(title, description, date, time, photo);*/
+    fetchSeminars({method: "POST", data: new FormData(form)}).then(resp => console.log(resp)).catch(err=> console.log(err))
     setStatusModal(false);
   }
   function handlerClose() {

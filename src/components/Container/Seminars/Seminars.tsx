@@ -5,6 +5,7 @@ import "./seminars.css";
 import Modal from "../../common/modal/Modal";
 import GetFormModal from "../../common/FormModal";
 import Button from "../../common/Button/Button";
+import fetchSeminars from "../../common/fetchData";
 
 export default function Seminars() {
   const [modalActive, setModalActive] = useState(false);
@@ -14,6 +15,12 @@ export default function Seminars() {
     title: "",
   });
   const [name, setName] = useState("");
+  const [listSeminars, setListSeminars] = useState([{}]);
+  const [statusVarLoad, setStatusVarLoad] = useState(false);
+  fetchSeminars({method : ''})
+    .then((resp: { seminars: []; })=> setListSeminars(resp.seminars))
+    .catch(err=>{ console.error(err); setListSeminars(list); setStatusVarLoad(true);});
+
   function handlerOpen() {
     setModalActive(!modalActive);
   }
@@ -42,13 +49,14 @@ export default function Seminars() {
     const fixedForm = e.target as HTMLFormElement;
     const sendForm = new FormData(fixedForm); 
     console.log(`изменение семинара с id: ${seminarId}`);
-    console.log(sendForm.get("description"));
+    console.log(`description: ${sendForm.get("description")} id: ${sendForm.get("id")}`);
     setModalActive(false);
   }
   return (
     <div className="seminars">
-      {list.map((item, index) => {
-        return <Seminar key={index} giveData={handlerName} {...item} />;
+      {statusVarLoad && <h3>Загрузка c севера не удалсь. Данные загружены из файла seminars.json</h3>  }
+      {listSeminars.map((item, index) => {
+        return <Seminar id={0} title={""} description={""} date={""} time={""} photo={""} key={index} giveData={handlerName} {...item} />;
       })}
       {modalActive &&
         (name === "Удалить" ? (
