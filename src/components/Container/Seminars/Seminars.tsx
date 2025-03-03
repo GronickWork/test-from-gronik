@@ -17,6 +17,7 @@ export default function Seminars() {
   const [name, setName] = useState("");
   const [listSeminars, setListSeminars] = useState([{}]);
   const [statusVarLoad, setStatusVarLoad] = useState(false);
+  const dataSend: Record<string, string> = {};
   fetchSeminars({method : ''})
     .then((resp: { seminars: []; })=> setListSeminars(resp.seminars))
     .catch(err=>{ console.error(err); setListSeminars(list); setStatusVarLoad(true);});
@@ -40,7 +41,9 @@ export default function Seminars() {
 
   function seminarDelete() {
     const seminarId = headerModal.id;
-    console.log(`удаление семинара с id: ${seminarId} из списка`);
+    dataSend.method = 'DELETE'; // Да!!!! Сервер наш настроен именно таким образом!!!!!!
+    dataSend.id = seminarId;
+    fetchSeminars({method: 'PUT', data: dataSend});
     setModalActive(false);
   }
 

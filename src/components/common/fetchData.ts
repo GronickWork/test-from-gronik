@@ -2,7 +2,7 @@ const urlServer = "http://localhost:8080";
 
 type TfetchSem = {
   method?: string,
-  data?: FormData,
+  data?: object,
 }
 export default async function fetchSeminars({method, data}: TfetchSem) {
   if (!method) {
@@ -15,8 +15,6 @@ export default async function fetchSeminars({method, data}: TfetchSem) {
   }
   switch (method) {
     case "POST":
-      console.log(`from fetchSeminars: ${data}`);
-      console.log(`from post data: ${JSON.stringify(data)}`);
       return await fetch(`${urlServer}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

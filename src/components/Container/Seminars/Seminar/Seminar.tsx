@@ -35,8 +35,8 @@ export default function Seminar(props: Tprops) {
         <img src={photo} alt={title} />
         <div className="seminar-card-text">
           <h4>{title}</h4>
-          <p>{description}</p>
-          <p>{date} {time}</p>    
+          <p data-mark='desc' >{description}</p>
+          <p><span data-mark='date'>{date}</span> <span data-mark='time'>{time}</span></p>    
         </div>
       </div>  
       <div className='seminar-card-button'>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { seminars as list } from "../../../seminars.json";
+//import { seminars as list } from "../../../seminars.json";
 import Button from "./Button/Button";
 
 type TformModal = {
@@ -7,9 +7,15 @@ type TformModal = {
   passFunc: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 export default function GetFormModal({ id, passFunc }: TformModal) {
-  const seminar = id ? list.find((item) => item.id === Number(id)) : null;
+  //const seminar = id ? list.find((item) => item.id === Number(id)) : null;
+  const cardSeminar = id
+    ? Array.from(document.querySelectorAll<HTMLElement>(".seminar-card")).find(
+        (item) => item.id === id
+      )
+    : null;
+  const seminarContent = cardSeminar?.querySelector(".seminar-card-content");
   const [dataSeminar, setDataSeminar] = useState({
-    id: "",
+    id: undefined as string | undefined,
     title: "",
     description: "",
     date: "",
@@ -17,17 +23,19 @@ export default function GetFormModal({ id, passFunc }: TformModal) {
     photo: "",
   });
   useEffect(() => {
-    if (seminar) {
+    if (cardSeminar) {
+      const date = seminarContent?.querySelector("span[data-mark='date']")?.textContent?.replace(/\./g, '-');
+      console.log(`date= ${date}`);
       setDataSeminar({
-        id: seminar.id.toString(),
-        title: seminar.title,
-        description: seminar.description,
-        date: seminar.date,
-        time: seminar.time,
-        photo: seminar.photo,
+        id: cardSeminar?.id,
+        title: seminarContent?.querySelector(".seminar-card-text h4")?.textContent ?? '',
+        description: seminarContent?.querySelector("p[data-mark='desc']")?.textContent ?? '',
+        date: date ?? '',
+        time: seminarContent?.querySelector("span[data-mark='time']")?.textContent ?? '',
+        photo: (seminarContent?.firstChild as HTMLImageElement)?.src ?? '',
       });
     }
-  }, [seminar]);
+  }, [cardSeminar, seminarContent]);
   function handlerSubmit(e: React.FormEvent<HTMLFormElement>) {
     passFunc(e);
   }
@@ -86,7 +94,7 @@ export default function GetFormModal({ id, passFunc }: TformModal) {
       {id ? (
         <Button url="" name="Изменить семинар" />
       ) : (
-        <Button url="" name="Добавить семинар"/>
+        <Button url="" name="Добавить семинар" />
       )}
     </form>
   );
