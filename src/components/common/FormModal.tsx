@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-//import { seminars as list } from "../../../seminars.json";
 import Button from "./Button/Button";
+import conversionData from "./conversionData";
 
 type TformModal = {
   id: string;
   passFunc: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 export default function GetFormModal({ id, passFunc }: TformModal) {
-  //const seminar = id ? list.find((item) => item.id === Number(id)) : null;
   const cardSeminar = id
     ? Array.from(document.querySelectorAll<HTMLElement>(".seminar-card")).find(
         (item) => item.id === id
@@ -24,13 +23,12 @@ export default function GetFormModal({ id, passFunc }: TformModal) {
   });
   useEffect(() => {
     if (cardSeminar) {
-      const date = seminarContent?.querySelector("span[data-mark='date']")?.textContent?.replace(/\./g, '-');
-      console.log(`date= ${date}`);
+      const date = seminarContent?.querySelector("span[data-mark='date']")?.textContent;
       setDataSeminar({
         id: cardSeminar?.id,
         title: seminarContent?.querySelector(".seminar-card-text h4")?.textContent ?? '',
         description: seminarContent?.querySelector("p[data-mark='desc']")?.textContent ?? '',
-        date: date ?? '',
+        date: conversionData(date?? ""),
         time: seminarContent?.querySelector("span[data-mark='time']")?.textContent ?? '',
         photo: (seminarContent?.firstChild as HTMLImageElement)?.src ?? '',
       });

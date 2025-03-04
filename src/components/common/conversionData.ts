@@ -1,17 +1,9 @@
-export default function conversionData(data: string): string {
-  const reversData = reverseString(data);
-  console.log('Reversed data:', reversData);
-  if(reversData.includes('.')) {
-    return reversData.replace(/\./g, '-');
-  } else {
-    return reversData.replace(/-/g, '.');
-  }
-}
+import moment from "moment";
 
-function reverseString(str: string): string {
-  let reversedStr = '';
-  for (let i = str.length - 1; i >= 0; i--) {
-    reversedStr += str[i];
+export default function conversionData(data: string): string {
+  if(data.includes('.')) {
+    return moment(data, 'DD.MM.YYYY').format('YYYY-MM-DD');
+  } else {
+    return moment(data).format('DD.MM.YYYY');
   }
-  return reversedStr;
 }

@@ -6,6 +6,7 @@ import Modal from "../../common/modal/Modal";
 import GetFormModal from "../../common/FormModal";
 import Button from "../../common/Button/Button";
 import fetchSeminars from "../../common/fetchData";
+import conversionData from "../../common/conversionData";
 
 export default function Seminars() {
   const [modalActive, setModalActive] = useState(false);
@@ -48,11 +49,18 @@ export default function Seminars() {
   }
 
   function seminarFix(e: React.FormEvent<HTMLFormElement>) {
-    const seminarId = headerModal.id;
+    e.preventDefault();
     const fixedForm = e.target as HTMLFormElement;
-    const sendForm = new FormData(fixedForm); 
-    console.log(`изменение семинара с id: ${seminarId}`);
-    console.log(`description: ${sendForm.get("description")} id: ${sendForm.get("id")}`);
+    const dataSend: Record<string, string> = {};
+    for (let i=0; i < fixedForm.length; i++) {
+      const element = fixedForm.elements[i] as HTMLInputElement;
+      if(element.name === "date") {
+        dataSend[element.name] = conversionData(element.value);  
+      } else {
+        dataSend[element.name] = element.value;
+      } 
+    }
+    fetchSeminars({method: 'PUT', data: dataSend});
     setModalActive(false);
   }
   return (

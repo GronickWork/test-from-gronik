@@ -18,13 +18,13 @@ export default function Header() {
      */
     for(let i = 1; i < form.length; i++) {
       const element = form.elements[i] as HTMLInputElement;
-      if(element.name) {
-        if(element.name === "date") {console.log(`Date: ${conversionData(element.value)} `)}
+      if(element.name === "date") {
+        dataSend[element.name] = conversionData(element.value);  
+      } else {
         dataSend[element.name] = element.value;
       }
     }
-    console.log(dataSend);
-    //fetchSeminars({method: "POST", data: dataSend});
+    fetchSeminars({method: "POST", data: dataSend});
     setStatusModal(false);
   }
   function handlerClose() {
