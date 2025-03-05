@@ -5,12 +5,12 @@
   "type": "module",
   "homepage": "https://GronickWork.github.github.io/test-from-gronik/",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview" 
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
