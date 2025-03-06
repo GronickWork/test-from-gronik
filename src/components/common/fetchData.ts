@@ -8,6 +8,7 @@ export default async function fetchSeminars({method, data}: TfetchSem) {
   if (!method) {
     const response = await fetch(urlServer);
     if (!response.ok) {
+      console.log('Message with fetchData responce - negative');
       return `HTTP error! status: `;
     } else {
       return response.json();
