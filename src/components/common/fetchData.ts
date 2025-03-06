@@ -1,4 +1,4 @@
-const urlServer = "http://localhost:8080";
+const urlServer = "http://localhost:8088";
 
 type TfetchSem = {
   method?: string,
