@@ -64,23 +64,25 @@ export default function Seminars() {
     setModalActive(false);
   }
   return (
-    <div className="seminars">
-      {statusVarLoad && <h3>Загрузка c севера не удалсь. Данные загружены из файла seminars.json</h3>  }
-      {listSeminars.map((item, index) => {
-        return <Seminar id={0} title={""} description={""} date={""} time={""} photo={""} key={index} giveData={handlerName} {...item} />;
-      })}
-      {modalActive &&
-        (name === "Удалить" ? (
-          <Modal
-            toggle={handlerOpen}
-            name={headerModal}
-            children={<Button onClick={seminarDelete} name="Удалить семинар"/>}
-          />
-        ) : (
-          <Modal toggle={handlerOpen} name={headerModal}>
-            <GetFormModal id={headerModal.id} passFunc={seminarFix} />
-          </Modal>
-        ))}
-    </div>
+    <>
+    {statusVarLoad && <h3>Загрузка c севера не удалсь. Данные загружены из файла seminars.json</h3>  }
+      <div className="seminars">  
+        {listSeminars.map((item, index) => {
+          return <Seminar id={0} title={""} description={""} date={""} time={""} photo={""} key={index} giveData={handlerName} {...item} />;
+        })}
+        {modalActive &&
+          (name === "Удалить" ? (
+            <Modal
+              toggle={handlerOpen}
+              name={headerModal}
+              children={<Button onClick={seminarDelete} name="Удалить семинар"/>}
+            />
+          ) : (
+            <Modal toggle={handlerOpen} name={headerModal}>
+              <GetFormModal id={headerModal.id} passFunc={seminarFix} />
+            </Modal>
+          ))}
+      </div>
+    </>
   );
 }

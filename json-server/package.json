@@ -1,0 +1,26 @@
+{
+  "name": "test-from-gronik-back",
+  "version": "1.0.0",
+  "description": "server for test task Kapaev I.V.",
+  "main": "json-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm install",
+    "start": "forever json-server.js",
+    "watch": "forever -w json-server.js"
+  },
+  "author": "Gronik4",
+  "homepage": "https://github.com/GronickWork/test-from-gronik-back.git",
+  "license": "ISC",
+  "dependencies": {
+    "forever": "^3.0.4",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
+    "koa-cors": "^0.0.16",
+    "koa-static": "^5.0.0",
+    "uuid": "^11.0.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
