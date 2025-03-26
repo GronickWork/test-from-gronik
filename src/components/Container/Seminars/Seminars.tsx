@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { seminars as list } from "../../../../seminars.json";
+//import { seminars as list } from "../../../../seminars.json";
 import Seminar from "./Seminar/Seminar";
 import "./seminars.css";
 import Modal from "../../common/modal/Modal";
@@ -21,7 +21,7 @@ export default function Seminars() {
   const dataSend: Record<string, string> = {};
   fetchSeminars({method : ''})
     .then((resp: { seminars: []; })=> setListSeminars(resp.seminars))
-    .catch(err=>{ console.error(err); setListSeminars(list); setStatusVarLoad(true);});
+    .catch(err=>{ console.error(err); setStatusVarLoad(true);}); //setListSeminars(list);
 
   function handlerOpen() {
     setModalActive(!modalActive);
