@@ -20,7 +20,7 @@ export default function Seminars() {
   const [statusVarLoad, setStatusVarLoad] = useState(false);
   const dataSend: Record<string, string> = {};
   fetchSeminars({method : ''})
-    .then((resp: { seminars: []; })=> setListSeminars(resp.seminars))
+    .then((resp: { seminars: []; })=> {setListSeminars(resp.seminars); setStatusVarLoad(false)})
     .catch(err=>{ console.error(err); setStatusVarLoad(true);}); //setListSeminars(list);
 
   function handlerOpen() {
